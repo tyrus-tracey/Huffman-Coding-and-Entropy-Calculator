@@ -1,5 +1,6 @@
-// Huffman Coding and Entropy Calculator.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+/*
+  Calculates and displays Huffman codes and entropy of user input string.
+*/
 
 #include <iostream>
 #include <string>
