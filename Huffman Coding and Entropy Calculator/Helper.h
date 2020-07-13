@@ -6,6 +6,7 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+#include <vector>
 enum letters { A = 0, B = 1, C = 2, D = 3, E = 4 };
 template <typename T>
 
@@ -18,8 +19,15 @@ void initializeArray(T* array, int size) {
 }
 
 // Parse string into chars and record frequencies
-void readInputDistribution(std::string input, int* distribution) {
+std::vector<int> readInputDistribution(std::string input) {
     char temp;
+    std::vector<int> distribution(5);
+    std::vector<int>::iterator iter = distribution.begin();
+    while (iter != distribution.end()) {
+        *iter = 0;
+        iter++;
+    }
+
     std::stringstream inputstream(input);
     while (inputstream >> temp) {
         switch (temp) {
@@ -42,11 +50,24 @@ void readInputDistribution(std::string input, int* distribution) {
             break;
         }
     }
-    return;
+    return distribution;
+}
+
+int min(const int* array, const int size) {
+    if (array == NULL) {
+        return 0;
+    }
+    int min = array[0];
+    for (int i = 0; i < size; i++) {
+        if (size < min) {
+            min = size;
+        }
+    }
+    return min;
 }
 
 // Print char frequencies
-void displayDistribution(int* distribution) {
+void displayDistribution(std::vector<int> distribution) {
     std::cout << "A: " << distribution[A] << std::endl;
     std::cout << "B: " << distribution[B] << std::endl;
     std::cout << "C: " << distribution[C] << std::endl;

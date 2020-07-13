@@ -1,7 +1,12 @@
 #include "Node.h"
 
-Node::Node(Node* parent, const char element)
-	:data(element), leftChild(nullptr), rightChild(nullptr), parentNode(parent)
+Node::Node(const std::string element, const int freq)
+	:symbol(element), leftChild(nullptr), rightChild(nullptr), parentNode(nullptr), frequency(freq)
+{
+}
+
+Node::Node(Node* parent, const std::string element, const int freq)
+	:symbol(element), leftChild(nullptr), rightChild(nullptr), parentNode(parent), frequency(freq)
 {
 }
 
@@ -9,9 +14,14 @@ Node::~Node()
 {
 }
 
-char Node::element() const
+std::string Node::element() const
 {
-	return data;
+	return symbol;
+}
+
+int Node::getFrequency() const
+{
+	return frequency;
 }
 
 Node* Node::left() const
@@ -27,6 +37,33 @@ Node* Node::right() const
 Node* Node::parent() const
 {
 	return parentNode;
+}
+
+void Node::deleteChildren()
+{
+	delete leftChild;
+	delete rightChild;
+	leftChild == nullptr;
+	rightChild == nullptr;
+	return;
+}
+
+void Node::setLeft(Node* node)
+{
+	leftChild = node;
+	return;
+}
+
+void Node::setRight(Node* node)
+{
+	rightChild = node;
+	return;
+}
+
+void Node::setParent(Node* node)
+{
+	parentNode = node;
+	return;
 }
 
 bool Node::isRoot() const

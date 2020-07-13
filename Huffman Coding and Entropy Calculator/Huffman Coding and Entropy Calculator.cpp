@@ -5,6 +5,7 @@
 #include <iostream>
 #include <string>
 #include "Helper.h"
+#include "BinaryTree.h"
 
 using namespace std;
 bool running = true;
@@ -13,11 +14,11 @@ string inputString;
 
 int main()
 {
-    int charDistribution[5];
     cout << "Huffman Coding and Entropy Calculator\n";
+    BinaryTree* tree = new BinaryTree;
 
+    //TODO: convert inputDist into node formats to insert into tree.
     while(running) {
-        initializeArray(charDistribution, 5);
         cout << "Please enter an even input string of A-E up to 32 characters, or enter X to stop:\n";
         getline(cin, inputString); // Receive user input
 
@@ -25,11 +26,14 @@ int main()
             running = false;
         }
         else {
-            readInputDistribution(inputString, charDistribution);
+            vector<int> charDistribution = readInputDistribution(inputString);
             displayDistribution(charDistribution);
         }
     } 
-
+    tree->printTree();
+    delete tree;
+    int i;
+    cin >> i;
     cout << "\nClosing...\n";
     return 0;
 }
