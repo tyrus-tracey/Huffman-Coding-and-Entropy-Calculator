@@ -9,7 +9,6 @@
 
 using namespace std;
 bool running = true;
-char temp;
 string inputString;
 
 int main()
@@ -22,16 +21,18 @@ int main()
         cout << "Please enter an even input string of A-E up to 32 characters, or enter X to stop:\n";
         getline(cin, inputString); // Receive user input
 
-        if (inputString == "X" || inputString == "x") {
-            running = false;
-        }
-        else {
+        if (inputString != "X" && inputString != "x") {
             vector<int> charDistribution = readInputDistribution(inputString);
             displayDistribution(charDistribution);
+        }
+        else {
+            running = false;
         }
     } 
     tree->printTree();
     delete tree;
+
+    //check before close
     int i;
     cin >> i;
     cout << "\nClosing...\n";

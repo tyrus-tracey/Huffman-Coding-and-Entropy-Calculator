@@ -43,8 +43,8 @@ void Node::deleteChildren()
 {
 	delete leftChild;
 	delete rightChild;
-	leftChild == nullptr;
-	rightChild == nullptr;
+	leftChild = nullptr;
+	rightChild = nullptr;
 	return;
 }
 

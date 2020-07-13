@@ -53,15 +53,14 @@ std::vector<int> readInputDistribution(std::string input) {
     return distribution;
 }
 
-int min(const int* array, const int size) {
-    if (array == NULL) {
-        return 0;
-    }
-    int min = array[0];
-    for (int i = 0; i < size; i++) {
-        if (size < min) {
-            min = size;
+std::vector<int>::iterator findMin(std::vector<int>& vec) {
+    std::vector<int>::iterator min = vec.begin();
+    std::vector<int>::iterator iter = vec.begin();
+    while (iter != vec.end()) {
+        if (*iter < *min) {
+            min = iter;
         }
+        iter++;
     }
     return min;
 }
