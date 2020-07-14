@@ -16,6 +16,10 @@ void initializeArray(T* array, int size);
 
 std::vector<Node> readInputDistribution(std::string input);
 
-std::vector<Node>::iterator findMin(std::vector<Node>& vec);
+std::vector<Node>::iterator findMin(std::vector<Node>& distribution);
+
+int getSum(std::vector<Node> distribution);
+
+void calculateFirstEntropy(std::vector<Node> distribution);
 
 void displayDistribution(std::vector<Node> distribution);

@@ -15,7 +15,6 @@ int main()
 {
     cout << "Huffman Coding and Entropy Calculator\n";
 
-    //TODO: convert inputDist into node formats to insert into tree.
     while(running) {
         cout << "Please enter an even input string of A-E up to 32 characters, or enter X to stop:\n";
         getline(cin, inputString); // Receive user input
@@ -23,6 +22,7 @@ int main()
         if (inputString != "X" && inputString != "x") {
             vector<Node> charDistribution = readInputDistribution(inputString);
             displayDistribution(charDistribution);
+            calculateFirstEntropy(charDistribution);
             BinaryTree tree(charDistribution);
             tree.printTree();
         }

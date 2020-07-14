@@ -7,9 +7,10 @@
 #include <sstream>
 #include <string>
 #include <vector>
-#include <list>
 #include "Node.h"
-enum letters { A = 0, B = 1, C = 2, D = 3, E = 4 };
+#include "Helper.h"
+#include <math.h>
+
 template <typename T>
 
 // Set array values to 0
@@ -51,10 +52,10 @@ std::vector<Node> readInputDistribution(std::string input) {
     return distribution;
 }
 
-std::vector<Node>::iterator findMin(std::vector<Node>& vec) {
-    std::vector<Node>::iterator min = vec.begin();
-    std::vector<Node>::iterator iter = vec.begin();
-    while (iter != vec.end()) {
+std::vector<Node>::iterator findMin(std::vector<Node>& distribution) {
+    std::vector<Node>::iterator min = distribution.begin();
+    std::vector<Node>::iterator iter = distribution.begin();
+    while (iter != distribution.end()) {
         if ((*iter).getFrequency() < (*min).getFrequency()) {
             min = iter;
         }
@@ -63,12 +64,39 @@ std::vector<Node>::iterator findMin(std::vector<Node>& vec) {
     return min;
 }
 
+int getSum(std::vector<Node> distribution)
+{
+    std::vector<Node>::iterator iter = distribution.begin();
+    int sum = 0;
+    while (iter != distribution.end()) {
+        sum += (*iter).getFrequency();
+        iter++;
+    }
+    return sum;
+}
+
+//DOUBLE CHECK CALCULATIONS
+void calculateFirstEntropy(std::vector<Node> distribution)
+{
+    int sum = getSum(distribution);
+    double entropy = 0.0;
+    std::vector<Node>::iterator iter = distribution.begin();
+    while (iter != distribution.end()) {
+        double prob = double((*iter).getFrequency()) / double(sum);
+        if (prob != 0) {
+            entropy -= prob * log2(prob);
+        }
+        iter++;
+    }
+    std::cout << "First-Order Entropy: " << entropy << std::endl;
+}
+
 // Print char frequencies
 void displayDistribution(std::vector<Node> distribution) {
     std::cout << "A: " << distribution[A].getFrequency() << std::endl;
     std::cout << "B: " << distribution[B].getFrequency() << std::endl;
     std::cout << "C: " << distribution[C].getFrequency() << std::endl;
     std::cout << "D: " << distribution[D].getFrequency() << std::endl;
-    std::cout << "E: " << distribution[E].getFrequency() << std::endl;
+    std::cout << "E: " << distribution[E].getFrequency() << std::endl << std::endl;
     return;
 }
