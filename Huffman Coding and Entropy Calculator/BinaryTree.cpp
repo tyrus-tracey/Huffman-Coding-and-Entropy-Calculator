@@ -1,10 +1,15 @@
 #include "BinaryTree.h"
+#include "Helper.h"
 #include <iostream>
 
-BinaryTree::BinaryTree()
-	:treeSize(0), rootNode(new Node("oldROOT", 0)), position(rootNode)
+BinaryTree::BinaryTree(std::vector<Node> distribution)
+	:treeSize(0), rootNode(nullptr), position(rootNode)
 {
-
+	while (!distribution.empty()) {
+		std::vector<Node>::iterator iter = findMin(distribution);
+		insertNode(*iter);
+		distribution.erase(iter);
+	}
 }
 
 BinaryTree::~BinaryTree()
@@ -25,24 +30,25 @@ bool BinaryTree::empty() const
 
 // Adds a node to the tree
 // Tree root and inserted node become children of a new root (of junk symbol and summed freq.)
-void BinaryTree::insertNode(Node* node)
+void BinaryTree::insertNode(Node node)
 {
 	if (empty()) {
-		rootNode = node;
+		rootNode = new Node(node.element(), node.getFrequency());
 		treeSize++;
 		return;
 	}
 
-	Node* newRoot = new Node("ROOT", node->getFrequency() + rootNode->getFrequency());
-	if (node->getFrequency() <= rootNode->getFrequency()) {
+	Node* newRoot = new Node("ROOT", node.getFrequency() + rootNode->getFrequency());
+	Node* newNode = new Node(node.element(), node.getFrequency());
+	if (node.getFrequency() <= rootNode->getFrequency()) {
 		newRoot->setLeft(rootNode);
-		newRoot->setRight(node);
+		newRoot->setRight(newNode);
 	}
 	else {
-		newRoot->setLeft(node);
+		newRoot->setLeft(newNode);
 		newRoot->setRight(rootNode);
 	}
-	node->setParent(newRoot);
+	newNode->setParent(newRoot);
 	rootNode->setParent(newRoot);
 	rootNode = newRoot;
 

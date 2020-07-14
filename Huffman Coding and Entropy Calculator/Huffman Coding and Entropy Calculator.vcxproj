@@ -148,6 +148,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BinaryTree.cpp" />
+    <ClCompile Include="Helper.cpp" />
     <ClCompile Include="Huffman Coding and Entropy Calculator.cpp" />
     <ClCompile Include="Node.cpp" />
   </ItemGroup>

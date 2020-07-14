@@ -1,17 +1,18 @@
 #pragma once
 #include "Node.h"
+#include <vector>
 
 class BinaryTree
 {
 public:
-	BinaryTree();
+	BinaryTree(std::vector<Node> distribution);
 	~BinaryTree();
 	int size() const;
 	bool empty() const;
 	Node* root();
 	Node* position;
 
-	void insertNode(Node* node);
+	void insertNode(Node node);
 	void printTree();
 	void deleteTree(Node* node);
 

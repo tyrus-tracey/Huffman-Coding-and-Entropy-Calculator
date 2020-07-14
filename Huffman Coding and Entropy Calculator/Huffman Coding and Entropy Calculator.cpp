@@ -4,8 +4,8 @@
 
 #include <iostream>
 #include <string>
-#include "Helper.h"
 #include "BinaryTree.h"
+#include "Helper.h"
 
 using namespace std;
 bool running = true;
@@ -14,7 +14,6 @@ string inputString;
 int main()
 {
     cout << "Huffman Coding and Entropy Calculator\n";
-    BinaryTree* tree = new BinaryTree;
 
     //TODO: convert inputDist into node formats to insert into tree.
     while(running) {
@@ -23,19 +22,15 @@ int main()
 
         if (inputString != "X" && inputString != "x") {
             vector<Node> charDistribution = readInputDistribution(inputString);
-            vector<Node>::iterator minNode = findMin(charDistribution);
             displayDistribution(charDistribution);
+            BinaryTree tree(charDistribution);
+            tree.printTree();
         }
         else {
             running = false;
         }
     } 
-    tree->printTree();
-    delete tree;
 
-    //check before close
-    int i;
-    cin >> i;
     cout << "\nClosing...\n";
     return 0;
 }
