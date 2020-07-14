@@ -23,6 +23,7 @@ int main()
 
         if (inputString != "X" && inputString != "x") {
             vector<Node> charDistribution = readInputDistribution(inputString);
+            vector<Node>::iterator minNode = findMin(charDistribution);
             displayDistribution(charDistribution);
         }
         else {

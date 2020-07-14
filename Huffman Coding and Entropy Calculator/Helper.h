@@ -51,11 +51,11 @@ std::vector<Node> readInputDistribution(std::string input) {
     return distribution;
 }
 
-std::vector<int>::iterator findMin(std::vector<int>& vec) {
-    std::vector<int>::iterator min = vec.begin();
-    std::vector<int>::iterator iter = vec.begin();
+std::vector<Node>::iterator findMin(std::vector<Node>& vec) {
+    std::vector<Node>::iterator min = vec.begin();
+    std::vector<Node>::iterator iter = vec.begin();
     while (iter != vec.end()) {
-        if (*iter < *min) {
+        if ((*iter).getFrequency() < (*min).getFrequency()) {
             min = iter;
         }
         iter++;
