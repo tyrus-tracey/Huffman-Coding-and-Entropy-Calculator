@@ -24,6 +24,18 @@ int Node::getFrequency() const
 	return frequency;
 }
 
+void Node::setFrequency(const int& value)
+{
+	frequency = value;
+	return;
+}
+
+void Node::operator++(int)
+{
+	frequency++;
+	return;
+}
+
 Node* Node::left() const
 {
 	return leftChild;

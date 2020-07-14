@@ -9,6 +9,8 @@ public:
 	~Node();
 	std::string element() const;
 	int getFrequency() const;
+	void setFrequency(const int& value);
+	void operator++(int);
 	Node* left() const;
 	Node* right() const;
 	Node* parent() const;

@@ -7,6 +7,8 @@
 #include <sstream>
 #include <string>
 #include <vector>
+#include <list>
+#include "Node.h"
 enum letters { A = 0, B = 1, C = 2, D = 3, E = 4 };
 template <typename T>
 
@@ -19,14 +21,10 @@ void initializeArray(T* array, int size) {
 }
 
 // Parse string into chars and record frequencies
-std::vector<int> readInputDistribution(std::string input) {
+std::vector<Node> readInputDistribution(std::string input) {
     char temp;
-    std::vector<int> distribution(5);
-    std::vector<int>::iterator iter = distribution.begin();
-    while (iter != distribution.end()) {
-        *iter = 0;
-        iter++;
-    }
+    std::vector<Node> distribution = { Node("A",0), Node("B",0), Node("C",0), Node("D",0), Node("E",0) };
+    std::vector<Node>::iterator iter = distribution.begin();
 
     std::stringstream inputstream(input);
     while (inputstream >> temp) {
@@ -66,11 +64,11 @@ std::vector<int>::iterator findMin(std::vector<int>& vec) {
 }
 
 // Print char frequencies
-void displayDistribution(std::vector<int> distribution) {
-    std::cout << "A: " << distribution[A] << std::endl;
-    std::cout << "B: " << distribution[B] << std::endl;
-    std::cout << "C: " << distribution[C] << std::endl;
-    std::cout << "D: " << distribution[D] << std::endl;
-    std::cout << "E: " << distribution[E] << std::endl;
+void displayDistribution(std::vector<Node> distribution) {
+    std::cout << "A: " << distribution[A].getFrequency() << std::endl;
+    std::cout << "B: " << distribution[B].getFrequency() << std::endl;
+    std::cout << "C: " << distribution[C].getFrequency() << std::endl;
+    std::cout << "D: " << distribution[D].getFrequency() << std::endl;
+    std::cout << "E: " << distribution[E].getFrequency() << std::endl;
     return;
 }

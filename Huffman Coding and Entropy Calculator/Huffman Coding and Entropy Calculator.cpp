@@ -22,7 +22,7 @@ int main()
         getline(cin, inputString); // Receive user input
 
         if (inputString != "X" && inputString != "x") {
-            vector<int> charDistribution = readInputDistribution(inputString);
+            vector<Node> charDistribution = readInputDistribution(inputString);
             displayDistribution(charDistribution);
         }
         else {
