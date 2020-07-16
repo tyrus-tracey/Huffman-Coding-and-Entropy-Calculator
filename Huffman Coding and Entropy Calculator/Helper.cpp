@@ -62,7 +62,7 @@ std::vector<Node> readInputDistributionDouble(std::string input)
     char temp1;
     char temp2;
     int index;
-    std::vector<Node> distribution(25); //prog. doesn't know what to do here
+    std::vector<Node> distribution(25); 
     for (char temp1 = 'A'; temp1 <= 'E'; temp1++) {
         for (char temp2 = 'A'; temp2 <= 'E'; temp2++) {
             std::string jointSymbol = std::string() + temp1 + temp2;
@@ -73,8 +73,10 @@ std::vector<Node> readInputDistributionDouble(std::string input)
 
     std::stringstream inputStream(input);
     while (inputStream >> temp1 && inputStream >> temp2) {
-        index = (temp1 % 65) * 5 + temp2 % 65;
-        distribution[index]++;
+        if ((temp1 >= 'A' && temp1 <= 'E') && (temp2 >= 'A' && temp2 <= 'E')) {
+            index = (temp1 % 65) * 5 + temp2 % 65;
+            distribution[index]++;
+        }
     }
     removeZeroes(distribution);
     return distribution;
