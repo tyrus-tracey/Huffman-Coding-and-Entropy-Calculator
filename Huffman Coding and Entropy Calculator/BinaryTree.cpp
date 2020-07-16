@@ -7,6 +7,7 @@ BinaryTree::BinaryTree(std::vector<Node> distribution)
 {
 	std::vector<Node>::iterator iter = distribution.begin();
 	std::vector<Node*> nodeList;
+	std::vector<Node*> junkList;
 	while (iter != distribution.end()) {
 		Node* node = new Node(iter->element(), iter->getFrequency());
 		nodeList.push_back(node);
@@ -19,14 +20,22 @@ BinaryTree::BinaryTree(std::vector<Node> distribution)
 	while(nodeList.size() > 1) { 
 		treeNode = findMin(nodeList);
 		left = new Node(*treeNode);
+		junkList.push_back(*treeNode);
 		nodeList.erase(treeNode); //  <- mem leak
 		treeNode = findMin(nodeList);
 		right = new Node(*treeNode);
+		junkList.push_back(*treeNode);
 		nodeList.erase(treeNode); // <- mem leak
 		parent = new Node(left, right);
 		nodeList.push_back(parent); 
 	}
-	rootNode = nodeList[0];
+	
+	treeNode = junkList.begin();
+	while (treeNode != junkList.end()) {
+		delete *treeNode;
+		treeNode++;
+	}
+	rootNode = new Node(nodeList[0]);
 }
 
 BinaryTree::~BinaryTree()
