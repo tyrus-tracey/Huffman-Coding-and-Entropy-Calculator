@@ -21,6 +21,9 @@ std::vector<Node>::iterator findMin(std::vector<Node>& distribution);
 
 int getSum(std::vector<Node> distribution);
 
-void getEntropy(std::vector<Node> distribution);
+void displayFirstEntropy(std::vector<Node> distribution);
+void displaySecondEntropy(std::vector<Node> distribution);
+
+double getEntropy(std::vector<Node> distribution);
 
 void displayDistribution(std::vector<Node> distribution);

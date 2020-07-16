@@ -102,8 +102,22 @@ int getSum(std::vector<Node> distribution)
     return sum;
 }
 
+void displayFirstEntropy(std::vector<Node> distribution)
+{
+    double entropy = getEntropy(distribution);
+    std::cout << "1st Order Entropy: " << entropy << std::endl;
+    return;
+}
+
+void displaySecondEntropy(std::vector<Node> distribution)
+{
+    double entropy = getEntropy(distribution);
+    std::cout << "2nd Order Entropy: " << entropy << std::endl;
+    return;
+}
+
 //DOUBLE CHECK CALCULATIONS
-void getEntropy(std::vector<Node> distribution)
+double getEntropy(std::vector<Node> distribution)
 {
     int sum = getSum(distribution);
     double entropy = 0.0;
@@ -115,7 +129,7 @@ void getEntropy(std::vector<Node> distribution)
         }
         iter++;
     }
-    std::cout << "Entropy: " << entropy << std::endl;
+    return entropy;
 }
 
 // Print char frequencies

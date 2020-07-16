@@ -21,20 +21,19 @@ int main()
 
         if (inputString != "X" && inputString != "x") {
             if (inputString.length() % 2 == 0) {
-                /*
+                
                 //First Entropy
                 vector<Node> singleDistribution = readInputDistributionSingle(inputString);
                 displayDistribution(singleDistribution);
-                calculateFirstEntropy(singleDistribution);
+                displayFirstEntropy(singleDistribution);
                 BinaryTree tree(singleDistribution);
                 tree.printTree();
-                */
-
-
+               
                 //Second Entropy
                 vector<Node> duoDistribution = readInputDistributionDouble(inputString);
                 removeZeroes(duoDistribution);
                 displayDistribution(duoDistribution);
+                displaySecondEntropy(duoDistribution);
             }
             else {
                 cout << "Error: Please enter a string of even length." << endl;
