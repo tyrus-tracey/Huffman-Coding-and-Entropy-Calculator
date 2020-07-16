@@ -13,8 +13,10 @@ public:
 	Node* position;
 	void printTree();
 	void deleteTree(Node* node);
+	void generateCodes();
 
 private:
+	void generateCode(Node* node);
 	void printNode(Node* node);
 
 	int treeSize;

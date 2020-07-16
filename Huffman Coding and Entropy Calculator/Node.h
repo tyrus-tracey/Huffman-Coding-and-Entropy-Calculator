@@ -21,12 +21,15 @@ public:
 	void setLeft(Node* node);
 	void setRight(Node* node);
 	void setParent(Node* node);
+	std::string getCode();
+	void appendCode(std::string string);
 	bool isRoot() const;
 	bool isExternal() const;
 
 private:
 	std::string symbol;
 	int frequency;
+	std::string code = "";
 	Node* leftChild;
 	Node* rightChild;	
 	Node* parentNode;

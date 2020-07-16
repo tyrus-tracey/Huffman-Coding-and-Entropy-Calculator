@@ -29,6 +29,8 @@ int main()
 
                 BinaryTree codeTree(singleDistribution);
                 BinaryTree jointCodeTree(duoDistribution);
+                codeTree.generateCodes();
+                jointCodeTree.generateCodes();
                 std::cout << "\n Single-Symbol Tree:\n";
                 codeTree.printTree();
                 std::cout << "\n Joint-Symbol Tree:\n";

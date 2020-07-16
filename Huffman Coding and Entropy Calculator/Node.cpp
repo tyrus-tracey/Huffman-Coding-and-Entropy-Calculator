@@ -107,6 +107,17 @@ void Node::setParent(Node* node)
 	return;
 }
 
+std::string Node::getCode()
+{
+	return code;
+}
+
+void Node::appendCode(std::string string)
+{
+	code += string;
+	return;
+}
+
 bool Node::isRoot() const
 {
 	return false;
