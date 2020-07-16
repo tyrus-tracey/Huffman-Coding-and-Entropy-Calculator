@@ -3,7 +3,7 @@
 #include <iostream>
 
 BinaryTree::BinaryTree(std::vector<Node> distribution)
-	:treeSize(0), rootNode(nullptr), position(rootNode)
+	:treeSize(distribution.size()), rootNode(nullptr), position(rootNode)
 {
 	//Create vector of allocated node pointers
 	std::vector<Node>::iterator iter = distribution.begin();
@@ -32,7 +32,7 @@ BinaryTree::BinaryTree(std::vector<Node> distribution)
 		junkList.push_back(*treeNode);
 		nodeList.erase(treeNode); 
 		parent = new Node(left, right);
-		nodeList.push_back(parent); 
+		nodeList.push_back(parent);
 	}
 	
 	// Delete allocated nodes
@@ -43,7 +43,9 @@ BinaryTree::BinaryTree(std::vector<Node> distribution)
 	}
 
 	// Allocate one node representing root of Huffman tree
-	rootNode = new Node(nodeList[0]); //segfault if empty string
+	if (!nodeList.empty()) {
+		rootNode = new Node(nodeList[0]); 
+	}
 }
 
 BinaryTree::~BinaryTree()
