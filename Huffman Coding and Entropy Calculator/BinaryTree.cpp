@@ -92,7 +92,9 @@ void BinaryTree::deleteTree(Node* node) {
 
 void BinaryTree::generateCodes()
 {
-	generateCode(rootNode);
+	if (!empty()) {
+		generateCode(rootNode);
+	}
 }
 
 void BinaryTree::generateCode(Node* node)
