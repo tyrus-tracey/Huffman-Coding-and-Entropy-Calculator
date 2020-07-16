@@ -80,11 +80,11 @@ std::vector<Node> readInputDistributionDouble(std::string input)
     return distribution;
 }
 
-std::vector<Node>::iterator findMin(std::vector<Node>& distribution) {
-    std::vector<Node>::iterator min = distribution.begin();
-    std::vector<Node>::iterator iter = distribution.begin();
+std::vector<Node*>::iterator findMin(std::vector<Node*>& distribution) {
+    std::vector<Node*>::iterator min = distribution.begin();
+    std::vector<Node*>::iterator iter = distribution.begin();
     while (iter != distribution.end()) {
-        if ((*iter).getFrequency() < (*min).getFrequency()) {
+        if ((*iter)->getFrequency() < (*min)->getFrequency()) {
             min = iter;
         }
         iter++;

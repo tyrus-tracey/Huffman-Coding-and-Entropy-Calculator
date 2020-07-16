@@ -7,6 +7,19 @@ Node::Node()
 
 }
 
+Node::Node(Node* node)
+	:symbol(node->element()), frequency(node->getFrequency())
+{
+	if (node->left() != nullptr) {
+		leftChild = node->left();
+		leftChild->parentNode = this;
+	}
+	if (node->right() != nullptr) {
+		rightChild = node->right();
+		rightChild->parentNode = this;
+	}
+}
+
 Node::Node(const std::string element, const int freq)
 	:symbol(element), leftChild(nullptr), rightChild(nullptr), parentNode(nullptr), frequency(freq)
 {
@@ -15,6 +28,15 @@ Node::Node(const std::string element, const int freq)
 Node::Node(Node* parent, const std::string element, const int freq)
 	:symbol(element), leftChild(nullptr), rightChild(nullptr), parentNode(parent), frequency(freq)
 {
+}
+
+Node::Node(Node* lChild, Node* rChild)
+	: symbol("P"), frequency(lChild->frequency + rChild->frequency), parentNode(nullptr)
+{
+	leftChild = lChild;
+	rightChild = rChild;
+	leftChild->parentNode = this;
+	rightChild->parentNode = this;
 }
 
 Node::~Node()

@@ -27,9 +27,6 @@ int main()
                 displayFirstEntropy(singleDistribution);
                 displaySecondEntropy(duoDistribution);
 
-                
-                //displayDistribution(singleDistribution);
-                //displayDistribution(duoDistribution);
                 BinaryTree codeTree(singleDistribution);
                 BinaryTree jointCodeTree(duoDistribution);
                 std::cout << "\n Single-Symbol Tree:\n";

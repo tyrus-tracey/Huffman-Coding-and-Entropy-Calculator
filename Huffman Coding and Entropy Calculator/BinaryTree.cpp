@@ -5,11 +5,28 @@
 BinaryTree::BinaryTree(std::vector<Node> distribution)
 	:treeSize(0), rootNode(nullptr), position(rootNode)
 {
-	while (!distribution.empty()) {
-		std::vector<Node>::iterator iter = findMin(distribution);
-		insertNode(*iter);
-		distribution.erase(iter);
+	std::vector<Node>::iterator iter = distribution.begin();
+	std::vector<Node*> nodeList;
+	while (iter != distribution.end()) {
+		Node* node = new Node(iter->element(), iter->getFrequency());
+		nodeList.push_back(node);
+		iter++;
 	}
+	std::vector<Node*>::iterator treeNode;
+	Node* left;
+	Node* right;
+	Node* parent;
+	while(nodeList.size() > 1) { 
+		treeNode = findMin(nodeList);
+		left = new Node(*treeNode);
+		nodeList.erase(treeNode); //  <- mem leak
+		treeNode = findMin(nodeList);
+		right = new Node(*treeNode);
+		nodeList.erase(treeNode); // <- mem leak
+		parent = new Node(left, right);
+		nodeList.push_back(parent); 
+	}
+	rootNode = nodeList[0];
 }
 
 BinaryTree::~BinaryTree()
@@ -26,33 +43,6 @@ int BinaryTree::size() const
 bool BinaryTree::empty() const
 {
 	return treeSize <= 0;
-}
-
-// Adds a node to the tree
-// Tree root and inserted node become children of a new root (of junk symbol and summed freq.)
-void BinaryTree::insertNode(Node node)
-{
-	if (empty()) {
-		rootNode = new Node(node.element(), node.getFrequency());
-		treeSize++;
-		return;
-	}
-
-	Node* newRoot = new Node("ROOT", node.getFrequency() + rootNode->getFrequency());
-	Node* newNode = new Node(node.element(), node.getFrequency());
-	if (node.getFrequency() <= rootNode->getFrequency()) {
-		newRoot->setLeft(rootNode);
-		newRoot->setRight(newNode);
-	}
-	else {
-		newRoot->setLeft(newNode);
-		newRoot->setRight(rootNode);
-	}
-	newNode->setParent(newRoot);
-	rootNode->setParent(newRoot);
-	rootNode = newRoot;
-
-	treeSize++;
 }
 
 void BinaryTree::printTree()

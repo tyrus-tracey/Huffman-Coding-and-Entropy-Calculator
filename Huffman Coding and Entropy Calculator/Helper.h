@@ -17,7 +17,7 @@ std::vector<Node> readInputDistributionSingle(std::string input);
 
 std::vector<Node> readInputDistributionDouble(std::string input);
 
-std::vector<Node>::iterator findMin(std::vector<Node>& distribution);
+std::vector<Node*>::iterator findMin(std::vector<Node*>& distribution);
 
 int getSum(std::vector<Node> distribution);
 

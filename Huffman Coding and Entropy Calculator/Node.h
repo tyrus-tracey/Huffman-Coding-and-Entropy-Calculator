@@ -5,8 +5,10 @@ class Node
 {
 public:
 	Node();
+	Node(Node* node);
 	Node(const std::string element, const int freq);
 	Node(Node* parent, const std::string element, const int freq);
+	Node(Node* lChild, Node* rChild);
 	~Node();
 	std::string element() const;
 	int getFrequency() const;
