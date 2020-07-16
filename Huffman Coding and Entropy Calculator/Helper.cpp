@@ -76,6 +76,7 @@ std::vector<Node> readInputDistributionDouble(std::string input)
         index = (temp1 % 65) * 5 + temp2 % 65;
         distribution[index]++;
     }
+    removeZeroes(distribution);
     return distribution;
 }
 
