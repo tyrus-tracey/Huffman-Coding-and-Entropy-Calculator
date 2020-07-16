@@ -1,5 +1,12 @@
 #include "Node.h"
 
+
+Node::Node()
+	:symbol(""), leftChild(nullptr), rightChild(nullptr), parentNode(nullptr), frequency(0)
+{
+
+}
+
 Node::Node(const std::string element, const int freq)
 	:symbol(element), leftChild(nullptr), rightChild(nullptr), parentNode(nullptr), frequency(freq)
 {

@@ -10,16 +10,17 @@
 #include <list>
 #include "Node.h"
 enum letters { A = 0, B = 1, C = 2, D = 3, E = 4 };
-template <typename T>
 
-void initializeArray(T* array, int size);
+void removeZeroes(std::vector<Node>& distribution);
 
-std::vector<Node> readInputDistribution(std::string input);
+std::vector<Node> readInputDistributionSingle(std::string input);
+
+std::vector<Node> readInputDistributionDouble(std::string input);
 
 std::vector<Node>::iterator findMin(std::vector<Node>& distribution);
 
 int getSum(std::vector<Node> distribution);
 
-void calculateFirstEntropy(std::vector<Node> distribution);
+void getEntropy(std::vector<Node> distribution);
 
 void displayDistribution(std::vector<Node> distribution);

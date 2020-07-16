@@ -11,18 +11,22 @@
 #include "Helper.h"
 #include <math.h>
 
-template <typename T>
-
-// Set array values to 0
-void initializeArray(T* array, int size) {
-    for (int i = 0; i < size; i++) {
-        array[i] = 0;
+void removeZeroes(std::vector<Node>& distribution)
+{
+    std::vector<Node>::iterator iter = distribution.begin();
+    while (iter != distribution.end()) {
+        if (iter->getFrequency() == 0) {
+            iter = distribution.erase(iter);
+        }
+        else {
+            iter++;
+        }
     }
     return;
 }
 
 // Parse string into chars and record frequencies
-std::vector<Node> readInputDistribution(std::string input) {
+std::vector<Node> readInputDistributionSingle(std::string input) {
     char temp;
     std::vector<Node> distribution = { Node("A",0), Node("B",0), Node("C",0), Node("D",0), Node("E",0) };
     std::vector<Node>::iterator iter = distribution.begin();
@@ -48,6 +52,29 @@ std::vector<Node> readInputDistribution(std::string input) {
         default:
             break;
         }
+    }
+    removeZeroes(distribution);
+    return distribution;
+}
+
+std::vector<Node> readInputDistributionDouble(std::string input)
+{
+    char temp1;
+    char temp2;
+    int index;
+    std::vector<Node> distribution(25); //prog. doesn't know what to do here
+    for (char temp1 = 'A'; temp1 <= 'E'; temp1++) {
+        for (char temp2 = 'A'; temp2 <= 'E'; temp2++) {
+            std::string jointSymbol = std::string() + temp1 + temp2;
+            index = (temp1 % 65)*5 + temp2 % 65;
+            distribution[index] = Node(jointSymbol, 0);
+        }
+    }
+
+    std::stringstream inputStream(input);
+    while (inputStream >> temp1 && inputStream >> temp2) {
+        index = (temp1 % 65) * 5 + temp2 % 65;
+        distribution[index]++;
     }
     return distribution;
 }
@@ -76,7 +103,7 @@ int getSum(std::vector<Node> distribution)
 }
 
 //DOUBLE CHECK CALCULATIONS
-void calculateFirstEntropy(std::vector<Node> distribution)
+void getEntropy(std::vector<Node> distribution)
 {
     int sum = getSum(distribution);
     double entropy = 0.0;
@@ -88,15 +115,16 @@ void calculateFirstEntropy(std::vector<Node> distribution)
         }
         iter++;
     }
-    std::cout << "First-Order Entropy: " << entropy << std::endl;
+    std::cout << "Entropy: " << entropy << std::endl;
 }
 
 // Print char frequencies
 void displayDistribution(std::vector<Node> distribution) {
-    std::cout << "A: " << distribution[A].getFrequency() << std::endl;
-    std::cout << "B: " << distribution[B].getFrequency() << std::endl;
-    std::cout << "C: " << distribution[C].getFrequency() << std::endl;
-    std::cout << "D: " << distribution[D].getFrequency() << std::endl;
-    std::cout << "E: " << distribution[E].getFrequency() << std::endl << std::endl;
+    std::vector<Node>::iterator iter = distribution.begin();
+    while (iter != distribution.end()) {
+        std::cout << (*iter).element() << ": " << (*iter).getFrequency() << std::endl;
+        iter++;
+    }
+    std::cout << std::endl;
     return;
 }

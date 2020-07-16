@@ -4,6 +4,7 @@
 class Node
 {
 public:
+	Node();
 	Node(const std::string element, const int freq);
 	Node(Node* parent, const std::string element, const int freq);
 	~Node();
