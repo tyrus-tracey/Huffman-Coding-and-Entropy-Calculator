@@ -114,7 +114,7 @@ void displayFirstEntropy(std::vector<Node> distribution)
 
 void displaySecondEntropy(std::vector<Node> distribution)
 {
-    double entropy = getEntropy(distribution);
+    double entropy = getEntropy(distribution) / 2;
     std::cout << "2nd Order Entropy: " << entropy << std::endl;
     return;
 }
