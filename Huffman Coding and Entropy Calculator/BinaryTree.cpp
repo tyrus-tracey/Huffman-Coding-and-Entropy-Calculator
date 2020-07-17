@@ -84,8 +84,10 @@ void BinaryTree::deleteTree(Node* node) {
 	if (node == nullptr) {
 		return;
 	}
-	deleteTree(node->left());
-	deleteTree(node->right());
+	if (!node->isExternal()) {
+		deleteTree(node->left());
+		deleteTree(node->right());
+	}
 	delete node;
 	return;
 }
@@ -112,6 +114,12 @@ double BinaryTree::averageCodeLength()
 
 void BinaryTree::generateCode(Node* node)
 {
+	if (node == nullptr || node == NULL) {
+		return;
+	}
+	if (node->isExternal()) {
+		return;
+	}
 	if (node->left() != nullptr) {
 		node->left()->appendCode(node->getCode() + '1');
 		generateCode(node->left());

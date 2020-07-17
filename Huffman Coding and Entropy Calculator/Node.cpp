@@ -125,6 +125,12 @@ bool Node::isRoot() const
 
 bool Node::isExternal() const
 {
+	if (symbol != "P") {
+		return true;
+	}
+	if (leftChild == NULL & rightChild == NULL) {
+		return true;
+	}
 	if (leftChild == nullptr && rightChild == nullptr) {
 		return true;
 	}
