@@ -120,10 +120,13 @@ void Node::appendCode(std::string string)
 
 bool Node::isRoot() const
 {
-	return false;
+	return(parentNode == nullptr ? true : false);
 }
 
 bool Node::isExternal() const
 {
+	if (leftChild == nullptr && rightChild == nullptr) {
+		return true;
+	}
 	return false;
 }

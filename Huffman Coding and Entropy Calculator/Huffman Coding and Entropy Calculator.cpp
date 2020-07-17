@@ -31,10 +31,12 @@ int main()
                 BinaryTree jointCodeTree(duoDistribution);
                 codeTree.generateCodes();
                 jointCodeTree.generateCodes();
-                std::cout << "\n Single-Symbol Tree:\n";
+                std::cout << "\nSingle-Symbol Tree:\n";
                 codeTree.printTree();
-                std::cout << "\n Joint-Symbol Tree:\n";
+                std::cout << "Avg Code Length: " << codeTree.averageCodeLength() << " bits per symbol." << endl;
+                std::cout << "\nJoint-Symbol Tree:\n";
                 jointCodeTree.printTree();
+                std::cout << "Avg Code Length: " << jointCodeTree.averageCodeLength()/2 << " bits per symbol." << endl;
             }
             else {
                 cout << "Error: Please enter a string of even length." << endl;

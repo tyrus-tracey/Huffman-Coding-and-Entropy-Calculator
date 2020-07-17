@@ -97,6 +97,11 @@ void BinaryTree::generateCodes()
 	}
 }
 
+double BinaryTree::averageCodeLength()
+{
+	return getCodeLength(rootNode);
+}
+
 void BinaryTree::generateCode(Node* node)
 {
 	if (node->left() != nullptr) {
@@ -108,6 +113,17 @@ void BinaryTree::generateCode(Node* node)
 		generateCode(node->right());
 	}
 	return;
+}
+
+double BinaryTree::getCodeLength(Node* node)
+{
+	if (node->isExternal()) {
+		double prob = double(node->getFrequency()) / rootNode->getFrequency();
+		return (prob / node->getCode().length());
+	}
+
+	double sum = getCodeLength(node->left()) + getCodeLength(node->right());
+	return sum;
 }
 
 Node* BinaryTree::root() 
