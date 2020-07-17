@@ -102,7 +102,12 @@ void BinaryTree::generateCodes()
 
 double BinaryTree::averageCodeLength()
 {
-	return getCodeLength(rootNode);
+	if (!empty()) {
+		return getCodeLength(rootNode);
+	}
+	else {
+		return 0;
+	}
 }
 
 void BinaryTree::generateCode(Node* node)
