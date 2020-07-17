@@ -93,6 +93,9 @@ void BinaryTree::deleteTree(Node* node) {
 void BinaryTree::generateCodes()
 {
 	if (!empty()) {
+		if (rootNode->isExternal()) {
+			rootNode->appendCode("1");
+		}
 		generateCode(rootNode);
 	}
 }
