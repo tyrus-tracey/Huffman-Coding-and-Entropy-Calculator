@@ -119,7 +119,7 @@ double BinaryTree::getCodeLength(Node* node)
 {
 	if (node->isExternal()) {
 		double prob = double(node->getFrequency()) / rootNode->getFrequency();
-		return (prob / node->getCode().length());
+		return (prob * node->getCode().length());
 	}
 
 	double sum = getCodeLength(node->left()) + getCodeLength(node->right());
