@@ -33,6 +33,11 @@ int main()
                 jointCodeTree.generateCodes();
                 std::cout << "Avg Single Code Length: " << codeTree.averageCodeLength() << " bits per symbol." << endl;
                 std::cout << "Avg Joint Code Length : " << jointCodeTree.averageCodeLength()/2 << " bits per symbol." << endl;
+
+                std::cout << "Single-Code Tree:\n";
+                codeTree.printTree();
+                std::cout << "Joint-Code Tree:\n";
+                jointCodeTree.printTree();
             }
             else {
                 cout << "Error: Please enter a string of even length." << endl;

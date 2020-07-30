@@ -1,27 +1,47 @@
 #include "BinaryTree.h"
 #include "Helper.h"
+#include <queue>
 #include <iostream>
+
+// Compare for lower-frequency node
+struct CompareNodes{
+	bool operator()(const Node node1, const Node node2)
+	{
+	return node1.getFrequency() > node2.getFrequency();
+}
+};
 
 BinaryTree::BinaryTree(std::vector<Node> distribution)
 	:treeSize(distribution.size()), rootNode(nullptr), position(rootNode)
 {
 	//Create vector of allocated node pointers
 	std::vector<Node>::iterator iter = distribution.begin();
-	std::vector<Node*> nodeList;
+	std::priority_queue<Node*, std::vector<Node*>, CompareNodes> nodeQueue;
 	std::vector<Node*> junkList;
 	while (iter != distribution.end()) {
 		Node* node = new Node(iter->element(), iter->getFrequency());
-		nodeList.push_back(node);
+		nodeQueue.push(node);
 		iter++;
 	}
 
 	// 1. Join smallest-frequency nodes to a parent
 	// 2. Remove nodes from vector
 	// 3. Append parent back to vector
-	std::vector<Node*>::iterator treeNode;
 	Node* left;
 	Node* right;
 	Node* parent;
+
+	while (nodeQueue.size() > 1) {
+		left = new Node(nodeQueue.top());
+		junkList.push_back(nodeQueue.top());
+		nodeQueue.pop();
+		right = new Node(nodeQueue.top());
+		junkList.push_back(nodeQueue.top());
+		nodeQueue.pop();
+		parent = new Node(left, right);
+		nodeQueue.push(parent);
+	}
+	/*
 	while(nodeList.size() > 1) { 
 		treeNode = findMin(nodeList);
 		left = new Node(*treeNode);
@@ -34,17 +54,18 @@ BinaryTree::BinaryTree(std::vector<Node> distribution)
 		parent = new Node(left, right);
 		nodeList.push_back(parent);
 	}
+	*/
 	
-	// Delete allocated nodes
-	treeNode = junkList.begin();
-	while (treeNode != junkList.end()) {
-		delete *treeNode;
-		treeNode++;
+	// Delete allocated nodes 
+	std::vector<Node*>::iterator pNodeIterator = junkList.begin();
+	while (pNodeIterator != junkList.end()) {
+		delete *pNodeIterator;
+		pNodeIterator++;
 	}
 
 	// Allocate one node representing root of Huffman tree
-	if (!nodeList.empty()) {
-		rootNode = new Node(nodeList[0]); 
+	if (!nodeQueue.empty()) {
+		rootNode = new Node(nodeQueue.top()); 
 	}
 }
 
