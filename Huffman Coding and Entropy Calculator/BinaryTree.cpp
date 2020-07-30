@@ -41,20 +41,6 @@ BinaryTree::BinaryTree(std::vector<Node> distribution)
 		parent = new Node(left, right);
 		nodeQueue.push(parent);
 	}
-	/*
-	while(nodeList.size() > 1) { 
-		treeNode = findMin(nodeList);
-		left = new Node(*treeNode);
-		junkList.push_back(*treeNode);
-		nodeList.erase(treeNode); 
-		treeNode = findMin(nodeList);
-		right = new Node(*treeNode);
-		junkList.push_back(*treeNode);
-		nodeList.erase(treeNode); 
-		parent = new Node(left, right);
-		nodeList.push_back(parent);
-	}
-	*/
 	
 	// Delete allocated nodes 
 	std::vector<Node*>::iterator pNodeIterator = junkList.begin();
