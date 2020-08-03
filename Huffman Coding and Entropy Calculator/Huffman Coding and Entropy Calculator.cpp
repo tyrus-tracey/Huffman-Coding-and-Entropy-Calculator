@@ -23,21 +23,21 @@ int main()
             if (inputString.length() % 2 == 0) {
                 
                 vector<Node> singleDistribution = readInputDistributionSingle(inputString);
-                vector<Node> duoDistribution = readInputDistributionDouble(inputString);
+                //vector<Node> duoDistribution = readInputDistributionDouble(inputString);
                 displayFirstEntropy(singleDistribution);
-                displaySecondEntropy(duoDistribution);
+                //displaySecondEntropy(duoDistribution);
 
                 BinaryTree codeTree(singleDistribution);
-                BinaryTree jointCodeTree(duoDistribution);
+                //BinaryTree jointCodeTree(duoDistribution);
                 codeTree.generateCodes();
-                jointCodeTree.generateCodes();
+                //jointCodeTree.generateCodes();
                 std::cout << "Avg Single Code Length: " << codeTree.averageCodeLength() << " bits per symbol." << endl;
-                std::cout << "Avg Joint Code Length : " << jointCodeTree.averageCodeLength()/2 << " bits per symbol." << endl;
-
+                //std::cout << "Avg Joint Code Length : " << jointCodeTree.averageCodeLength()/2 << " bits per symbol." << endl;
+                std::cout << "Total Size: " << codeTree.totalSize() << " bits.\n";
                 std::cout << "Single-Code Tree:\n";
                 codeTree.printTree();
-                std::cout << "Joint-Code Tree:\n";
-                jointCodeTree.printTree();
+                //std::cout << "Joint-Code Tree:\n";
+                //jointCodeTree.printTree();
             }
             else {
                 cout << "Error: Please enter a string of even length." << endl;

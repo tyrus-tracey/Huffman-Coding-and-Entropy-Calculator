@@ -14,9 +14,11 @@ public:
 	void printTree();
 	void deleteTree(Node* node);
 	void generateCodes();
-	double averageCodeLength();
+	double averageCodeLength(); 
+	int totalSize();
 
 private:
+	int symbolSize(Node* node);
 	void generateCode(Node* node);
 	double getCodeLength(Node* node);
 	void printNode(Node* node);

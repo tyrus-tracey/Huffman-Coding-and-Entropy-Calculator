@@ -83,7 +83,9 @@ void BinaryTree::printNode(Node* node) {
 	}
 	printNode(node->left());
 	printNode(node->right());
-	std::cout << node->element() << ": " << node->getFrequency() << " " << node->getCode() << std::endl;
+	if (node->isExternal()) {
+		std::cout << node->element() << ": " << node->getFrequency() << " " << node->getCode() << std::endl;
+	}
 	return;
 }
 
@@ -119,9 +121,25 @@ double BinaryTree::averageCodeLength()
 	}
 }
 
+int BinaryTree::totalSize()
+{
+	return symbolSize(rootNode);
+}
+
+
+int BinaryTree::symbolSize(Node* node)
+{
+	if (node->isExternal()) {
+		return (node->getFrequency() * node->getCode().length());
+	}
+
+	int sum = symbolSize(node->left()) + symbolSize(node->right());
+	return sum;
+}
+
 void BinaryTree::generateCode(Node* node)
 {
-	if (node == nullptr || node == NULL) {
+	if (node == nullptr) {
 		return;
 	}
 	if (node->isExternal()) {
